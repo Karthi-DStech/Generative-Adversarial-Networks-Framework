@@ -1,4 +1,4 @@
-# Versatile GAN Framework for Image Generation
+# GAN Framework for Image Generation - (Biomaterial Discovery) (Masters Dissertation)
 
 ## Overview
 
