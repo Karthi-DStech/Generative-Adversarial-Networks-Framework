@@ -2,7 +2,7 @@
 
 ## Overview
 
-VersiGAN is a versatile GAN framework designed to facilitate the development and evaluation of GAN-based image generation models. This project integrates multiple state-of-the-art in addition to innovative GAN architectures, including **VanillaGAN**, **ACVanillaGAN**, **WGAN**, **ACWGAN**, **WGAN-GP**, **ACWGAN-GP**, **WGAN-WC**, **MorphGAN**, **WCGAN-GP**, **BlurGAN**, **ACBlurGAN**, **STYLEGAN**, and **ACCBlurGAN**. It provides researchers and developers with a powerful and flexible toolkit, offering a modular architecture that allows for the easy creation, training, and evaluation of GAN models across various image generation tasks.
+VersiGAN is a versatile GAN framework designed to facilitate the development and evaluation of GAN-based image generation models. This project integrates multiple state-of-the-art in addition to innovative GAN architectures, including **VanillaGAN**, **ACVanillaGAN**, **WGAN**, **ACWGAN**, **WGAN-GP**, **ACWGAN-GP**, **WGAN-WC**, **WCGAN-GP**, **BlurGAN**, **ACBlurGAN**, **STYLEGAN**, and **ACCBlurGAN**. It provides researchers and developers with a powerful and flexible toolkit, offering a modular architecture that allows for the easy creation, training, and evaluation of GAN models across various image generation tasks.
 
 
 Here are detailed descriptions of multiple GAN architectures contained in this project: 
@@ -88,95 +88,9 @@ To run this project, you'll need the following dependencies, the [requirements.t
     ```
     All the options can be used during training process can be found in the [base_option.py](./options/base_option.py) and [train_option.py](./options/train_option.py) folder.
 
-5. **Hyperparameter Optimisation**:
-   1. Define your hyperparameter space in the [hyperparameter_space.json](./hyperparameter_space.json) file.
-   an example of hyperparameter space is:
-   ```json
-    {
-      "num_iterations": 20,
-      "common":
-      {
-          "train_dis_freq": [1, 2, 3, 4, 5],
-          "g_lr": [0.00009, 0.0001, 0.0003, 0.0006, 0.0009, 0.003],
-          "d_lr":                 [0.00009, 0.0001, 0.0003, 0.0006, 0.0009, 0.003],
-          "latent_dim":           [56, 112, 224]
-      },
-      "VanillaGAN":
-      {
-          "is_conditional": false,
-          "hyperparameter":
-          {
-              "vanilla_g_neurons":    [128, 256, 512, 1024],
-              "vanilla_d_neurons":    [128, 256, 512, 1024]
-          }
-      }
-    }
-    ```
-
-    The `number_of_iterations` determines how many different sets of hyperparameters will be evaluated for each model. Each iteration involves training a model with a randomly selected set of hyperparameters from the defined hyperparameter space, evaluating its performance, and comparing it to the best result found so far. The `common` section contains parameters that are shared across all models. And model-specific sections like `"VanillaGAN"` contain parameters unique to that model. This structure allows for efficient definition of hyperparameter spaces across different GAN variants.
-
-    2. Run the hyperparameter optimisation script:
-    For example
-    ```
-    python hp_optimisation.py --dataset_name biological --n_epochs 200 --img_size 224 --batch_size 32
-    ```
-    3. Results for each iteration, including hyperparameters and FID scores, will be saved in the logs directory.
-
-    4. After completion, the script will output the best hyperparameters found and their corresponding FID score.
-
-    5. To visualize the results, you can use the [analysis.ipynb](./notebooks/analysis.ipynb) notebook, in section `HP Optimization`.
-
-6. **Evaluate**:
-    In training and hypermarameter optimisation, the evaluation is done automatically and the results are saved in the logs directory.
-    You can evaluate a trained model using the following command:
-
-    ```
-    python evaluate.py --model_path ./logs/your_experiment_name/net_Generator_latest.pth
-    ```
-
-    For other evaluate options, please check the [evaluate_option.py](./options/evaluate_option.py) and [base_option.py](./options/base_option.py) file.
-
-7. **Generate Images**:
+5. **Generate Images**:
    When you have a trained model, you can use it to generate new images using the following command:
    ```
    python predict.py --model_path ./logs/your_experiment_name/net_Generator_latest.pth
    ```
    For other options, please check the [predict_option.py](./options/predict_option.py) and [base_option.py](./options/base_option.py) file.
-
-8. **Analyze Results**:
-   To analyze the results of your experiments, you can use the [analysis.ipynb](./notebooks/analysis.ipynb) notebook. This notebook provides visualizations and insights into the performance of your GANs.
-
-## Extending the Framework
-If you want to add a new GAN architecture or modify an existing one, you can follow these steps:
-
-1. **Add new GAN architecture**:
-    - Create new model files in the [model](./model/) folder.
-    - Add creation logic for new models in the `make_model` function in [call_methods.py](./call_methods.py).
-    - Add new model options in the [base_option.py](./options/base_option.py) file.
-    
-2. **Customise network architectures**:
-    - Define new network structures in [generators.py](./model/generators.py) and [discriminators.py](./model/discriminators.py).
-    - Add creation logic for new networks in the `make_network` function in [call_methods.py](./call_methods.py).
-
-3. **Implement new loss functions**:
-    - Add new loss function implementations in [losses.py](./utils/losses.py).
-
-4. **Extend dataset suuport**:
-    - Create new dataset classes in the [data](./data/) folder.
-    - Add processing logic for new datasets in the `make_dataset` function in [call_methods.py](./call_methods.py).
-
-5. **Add new evaluation metrics**:
-    - Implement new evaluation metrics in the [utils](./utils/) folder.
-    - Integrate new evaluation methods in [evaluate.py](./evaluate.py)
-
-6. **Optimize training process**:
-    - Modify [train.py](./train.py) or [progressive_train.py](./progressive_train.py) to implement new training strategies.
-
-7. **Expand visualization capabilities**:
-    - Add new visualization methods in [tb_visualizer.py](./utils/tb_visualizer.py)
-    - Update the [analysis.ipynb](./notebooks/analysis.ipynb) notebook to include new visualizations.
-
-8. **Add new hyperparameter optimization methods**:
-    - Modify [hp_optimisation.py](./hp_optimisation.py) to support more hyperparameter search strategies
-
-Through these methods, you can extend and customise the functionality of this framework according to specific needs. The modular design of the framework makes these modifications and extensions relatively simple and straightforward.
