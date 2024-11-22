@@ -1,8 +1,10 @@
-# GAN Framework for Image Generation - (Biomaterial Discovery) (Masters Dissertation)
+# GAN Framework for Image Generation - (Biomaterial Discovery) 
 
 ## Overview
 
-VersiGAN is a versatile GAN framework designed to facilitate the development and evaluation of GAN-based image generation models. This project integrates multiple state-of-the-art in addition to innovative GAN architectures, including **VanillaGAN**, **ACVanillaGAN**, **WGAN**, **ACWGAN**, **WGAN-GP**, **ACWGAN-GP**, **WGAN-WC**, **WCGAN-GP**, **BlurGAN**, **ACBlurGAN**, **STYLEGAN**, and **ACCBlurGAN**. It provides researchers and developers with a powerful and flexible toolkit, offering a modular architecture that allows for the easy creation, training, and evaluation of GAN models across various image generation tasks.
+This repository contains Generative Adversarial Network (GAN) Framework specifically designed to address the challenges of scalability, maintainability, reproducibility, and effective bug tracking in AI development. This framework is built to handle complex and extensive datasets with performance optimization, making it suitable for diverse real-world applications. It features a modular architecture that ensures clean, well-organized code for easy updates and integration, adhering to industry best practices.
+
+The implementation of GANs including **VanillaGAN**, **ACVanillaGAN**, **WGAN**, **ACWGAN**, **WGAN-GP**, **ACWGAN-GP**, **WGAN-WC**, **WCGAN-GP**, **BlurGAN**, **ACBlurGAN**, **STYLEGAN**, and **ACCBlurGAN**. 
 
 
 Here are detailed descriptions of multiple GAN architectures contained in this project: 
@@ -33,12 +35,6 @@ Here are detailed descriptions of multiple GAN architectures contained in this p
 
 12. **<span style="color:red;">ACCBlurGAN</span>**(new): Further enhances ACBlurGAN by using convolutional layers as the backbone for both the generator and discriminator.
 
-## Features
-- **Modular Architecture**: The project is built with a modular architecture, enabling easy integration of new GAN architectures and the swapping of existing ones.
-- **Versatility**: The framework supports a wide range of GAN architectures, making it suitable for various image generation tasks.
-- **Customizable Training**: The framework offers extensive flexibility in configuring the training, evaluation, and prediction processes. Users can fine-tune a wide array of parameters, including, but not limited to, training strategies, model architecture, hyperparameters and dataset configurations. These adjustments can be made through the comprehensive options system, which includes base, train, predict, and evaluate options. The settings are easily accessible and modifiable via the options folder, shell scripts, or command-line arguments, allowing researchers and developers to precisely tailor the entire pipeline to their specific requirements and experimental needs.
-- **Comprehensive Evaluation and Analysis**: The framework provides robust tools for model evaluation and result analysis. It includes an automated evaluation pipeline that calculates metrics such as FID scores and offers visualization capabilities for generated images. The Jupyter notebook allows for flexible, in-depth analysis of results, including the creation of video grids for visual comparison of different models or training stages.
- - **Advanced Performance Tracking and Experiment Management**: The project implements a robust logging system using TensorBoard. It tracks and records various performance metrics, losses, and learning rates throughout the training process. The system also saves generated images at regular intervals, allowing for visual inspection of the model's progress. Logs are organised by experiment name and include detailed configuration information, making it easy to compare different runs and analyse results over time.
 
 ## Enviroment Dependencies
 To run this project, you'll need the following dependencies, the [requirements.txt](./requirements.txt) file is provided for your convenience:
