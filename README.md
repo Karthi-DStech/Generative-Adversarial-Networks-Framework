@@ -1,5 +1,47 @@
 # GAN Framework for Image Generation - (Biomaterial Discovery) 
 
+**Directory Structure**
+```
+Directory structure:
+└── karthi-dstech-generative-adversarial-networks-framework/
+    ├── README.md
+    ├── call_methods.py
+    ├── evaluate.py
+    ├── predict.py
+    ├── requirements.txt
+    ├── train.py
+    ├── data/
+    │   ├── datasets.py
+    │   ├── mnist.py
+    │   └── topographies.py
+    ├── launch/
+    │   ├── predict.sh
+    │   └── train.sh
+    ├── model/
+    │   ├── acgan.py
+    │   ├── acvanilla.py
+    │   ├── blurgan.py
+    │   ├── discriminators.py
+    │   ├── generators.py
+    │   ├── models.py
+    │   ├── networks.py
+    │   ├── stylegan.py
+    │   ├── vanillagan.py
+    │   └── wgan.py
+    ├── options/
+    │   ├── base_option.py
+    │   ├── evaluate_option.py
+    │   ├── predict_option.py
+    │   └── train_option.py
+    └── utils/
+        ├── custom_layers.py
+        ├── images_utils.py
+        ├── losses.py
+        ├── tb_visualizer.py
+        ├── utils.py
+        └── weight_init.py
+```
+
 ## Overview
 
 This repository contains Generative Adversarial Network (GAN) Framework specifically designed to address the challenges of scalability, maintainability, reproducibility, and effective bug tracking in AI development. This framework is built to handle complex and extensive datasets with performance optimization, making it suitable for diverse real-world applications. It features a modular architecture that ensures clean, well-organized code for easy updates and integration, adhering to industry best practices.
@@ -90,3 +132,4 @@ To run this project, you'll need the following dependencies, the [requirements.t
    python predict.py --model_path ./logs/your_experiment_name/net_Generator_latest.pth
    ```
    For other options, please check the [predict_option.py](./options/predict_option.py) and [base_option.py](./options/base_option.py) file.
+
